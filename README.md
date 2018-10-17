@@ -49,18 +49,25 @@ require_once '/path/to/microsoft-cognitive-face/vendor/autoload.php';
 require_once 'vendor/autoload.php';
 
 $client = new \Hymns\MicrosoftCognitiveFace\Client('YOUR_APP_KEY', 'YOUR_REGION');
-$faces  = $client->face()->detectFacesFromImage('URL_IMAGE');
+$faces = $client->face()->detectFacesFromImage('URL_IMAGE');
 
 print_r($faces);
 ```
 
-### Verify Two Faces Image ###
+### Verify Two Faces ###
 
 ```php
+// include your composer dependencies
 require_once 'vendor/autoload.php';
 
 $client = new \Hymns\MicrosoftCognitiveFace\Client('YOUR_APP_KEY', 'YOUR_REGION');
-$faces  = $client->face()->verifyTwoFaces('URL_IMAGE');
+$result = $client->face()->verifyTwoFaces('FACE_ID_1', 'FACE_ID_2');
 
-print_r($faces);
+print_r($result);
 ```
+
+### Milestone Plan for Development ###
+- [x] Detect Faces from Image
+- [x] Verify Two Faces
+- [ ] Find Similar form FaceList
+- [ ] Identify Face from PersonGroup
