@@ -1,0 +1,26 @@
+{
+    "name": "hymns/microsoft-cognitive-face",
+    "homepage": "https://github.com/hymns/microsoft-cognitive-face",
+    "description": "PHP client library for Face module in Microsoft Cognitive Services",
+    "keywords": ["microsoft", "cognitive", "face", "api"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muhammad Hamizi Jaminan",
+            "homepage": "https://github.com/hymns"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/hymns/microsoft-cognitive-face/issues"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hymns\\MicrosoftCognitiveFace\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "php": ">=7.1"
+    }
+}
