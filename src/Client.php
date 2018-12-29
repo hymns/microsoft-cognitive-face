@@ -2,9 +2,8 @@
 
 namespace Hymns\MicrosoftCognitiveFace;
 
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
 use Hymns\MicrosoftCognitiveFace\Model\Face;
+use Hymns\MicrosoftCognitiveFace\Exception\ClientException;
 
 class Client
 {
@@ -19,7 +18,7 @@ class Client
             'headers'  => [
                 'Ocp-Apim-Subscription-Key' => $key,
                 'Content-Type'              => 'application/json',
-                'User-Agent'                => 'hymns/microsoft-cognitive-face/1.0'
+                'User-Agent'                => 'hymns/microsoft-cognitive-face'
             ]
         ]);
     }
@@ -67,12 +66,15 @@ class Client
         {
             return $this->guzzleClient->request($method, $responseUri, $parameters);
         } 
-        catch (GuzzleException $e) 
+        catch (\GuzzleHttp\Exception\ClientException $e)
         {
-            /**
-             * @var $e RequestException
-             */
-            throw new Exception\ClientException((string)$e->getResponse()->getBody(), $e->getCode(), $e);
+            $response = json_decode($e->getResponse()->getBody());
+            throw new ClientException($response->message, $e->getCode(), $e);
+        }
+
+        catch (\GuzzleHttp\Exception\GuzzleException $e)
+        {
+            throw new ClientException($e->getResponse(), $e->getCode(), $e);
         }
     }
 
